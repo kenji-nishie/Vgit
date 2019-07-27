@@ -17,7 +17,31 @@
                   = group_user.user.name
           .main-header__edit-btn
             = link_to "Edit",edit_group_path(@group), class: "main-header__edit-btn2"
-            
+
+        .main-middle
+          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/gblDCkHA1GI", :width => "560"}
+
+        .messages
+          = render @messages
+        .form
+          = form_for [@group, @message] do |f|
+            = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+            .form__mask
+              = f.label :image, class: 'form__mask__image' do
+                = fa_icon 'picture-o', class: 'icon'
+                = f.file_field :image, class: 'hidden'
+            = f.submit 'Send', class: 'form__submit'
+      
+      .chat-right
+        .main-header
+          .main-header__left-box
+            %h2.main-header__left-box__current-group 
+              =@group.name
+            %ul.main-header__left-box__member-list 
+              Member：
+              %li.main-header__left-box__member-list__member
+                - @group.group_users.each do |group_user|
+                  = group_user.user.name
         .messages
           = render @messages
         .form

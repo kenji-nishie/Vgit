@@ -12,6 +12,8 @@
           = link_to edit_user_path(current_user) do
             = fa_icon 'cog'
   .groups
+    %p.project__name
+      プロジェクト名一覧
     .group
       - current_user.groups.each do |group|
         = link_to group_messages_path(group) do
