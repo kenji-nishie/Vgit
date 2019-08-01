@@ -79,3 +79,6 @@ end
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'jquery-turbolinks'
+
+gem 'bootstrap', '~> 4.3.1'
+gem 'pry-rails'

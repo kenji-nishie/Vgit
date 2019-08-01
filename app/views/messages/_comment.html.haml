@@ -1,0 +1,11 @@
+.comment{data: {id: "#{comment.id}", "group-id": "#{message.group_id}"}} 
+  .upper-comment
+    .upper-comment__user-name
+      = comment.user.name
+    .upper-comment__date
+      = comment.created_at.strftime("%Y/%m/%d %H:%M")
+  .lower-comment
+    - if comment.content.present?
+      %p.lower-comment__content
+        = comment.content
+    = image_tag comment.image.url, class: 'lower-comment__image' if comment.image.present?

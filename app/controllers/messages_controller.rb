@@ -5,6 +5,12 @@ class MessagesController < ApplicationController
     @message = Message.new
     @messages = @group.messages.includes(:user)
     @group = Group.find(params[:group_id])
+
+    @comment = Comment.new
+    @comments = @message.comments.includes(:group)
+
+    @youtube_url = @group.youtube_url
+    @enbed_url = @youtube_url.gsub(/youtu.be/,'www.youtube.com/embed')
   end
 
   def create

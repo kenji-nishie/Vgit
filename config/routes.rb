@@ -9,4 +9,7 @@ Rails.application.routes.draw do
       resources :messages, only: :index, defaults: { format: 'json' }
     end
   end
+  resources :messages, only: [:index, :create] do
+    resources :comments, only: [:index, :create]
+  end
 end

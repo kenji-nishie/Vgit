@@ -21,27 +21,28 @@
 
           .main-middle
             %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => @enbed_url, :width => "560"}
-          .messages1
+
+          .messages2
             = render @messages
-          .form
-            = form_for [@group, @message] do |f|
-              = f.text_field :content, class: 'form__message', placeholder: 'type a message'
-              .form__mask
-                = f.label :image, class: 'form__mask__image' do
-                  = fa_icon 'picture-o', class: 'icon'
-                  = f.file_field :image, class: 'hidden'
-              = f.submit 'Send', class: 'form__submit'
         
         .chat-right.col-xl-6.border
           .test
             .main-header
               .main-header__left-box
                 %h2.main-header__left-box__current-group 
-                  
+                  = @message.content
                 %ul.main-header__left-box__member-list 
                   Member：
                   %li.main-header__left-box__member-list__member
                     - @group.group_users.each do |group_user|
                       = group_user.user.name
             .comments
-              
+              = render @comments
+            .form
+              = form_for [@message,@comment] , url: message_comments_path, method: :post do |f|
+                = f.text_field :content, class: 'form__comment', placeholder: 'type a comment'
+                .form__mask
+                  = f.label :image, class: 'form__mask__image' do
+                    = fa_icon 'picture-o', class: 'icon'
+                    = f.file_field :image, class: 'hidden'
+                = f.submit 'Send', class: 'form__submit'

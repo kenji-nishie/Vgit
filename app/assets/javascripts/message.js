@@ -78,6 +78,6 @@ $(function(){
   };
   var reg = location.href.match(/\/groups\/\d+\/messages/)
   if(reg !== null){
-    setInterval(reloadMessages, 3000);
+    //setInterval(reloadMessages, 3000);
   }
 });
