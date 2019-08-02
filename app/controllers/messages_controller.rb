@@ -27,10 +27,15 @@ class MessagesController < ApplicationController
     end
   end
 
+  def update
+    @message.update(message_params)
+    render :index
+  end
+
   private
 
   def message_params
-    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+    params.require(:message).permit(:content, :image, :check_num).merge(user_id: current_user.id)
   end
 
   def set_group
